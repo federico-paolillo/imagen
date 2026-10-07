@@ -1,0 +1,23 @@
+[tools]
+go = "1.27"
+golangci-lint = "latest"
+
+[tasks.build]
+description = "Build the imagen binary into ./bin"
+run = "go build -trimpath -o bin/imagen ./cmd/imagen"
+
+[tasks.skill]
+description = "Build the imagen executable into the skill's scripts/ folder"
+run = "go build -trimpath -o skills/imagen/scripts/imagen ./cmd/imagen"
+
+[tasks.test]
+description = "Run unit tests"
+run = "go test -race ./..."
+
+[tasks.lint]
+description = "Run golangci-lint"
+run = "golangci-lint run ./..."
+
+[tasks.check]
+description = "Lint and test"
+depends = ["lint", "test"]
